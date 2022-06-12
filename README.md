@@ -1,24 +1,41 @@
-# README
+# LMS
+## A simple library management system api with rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#### Contributors in this project
 
-Things you may want to cover:
+- Nigus Solomon
+- Hawani Hashim
+- Kaleab Anteneh
+- Yeabsera Seyoum
+- Aklog Sirak
 
-* Ruby version
 
-* System dependencies
+### Dependencies needed
+- Rails (https://guides.rubyonrails.org/getting_started.html)
+- Docker (Dcoker-Compose)
 
-* Configuration
 
-* Database creation
+## Steps in running the api...
 
-* Database initialization
+### Step 1 - Getting Started
+- Clone this repository or download the zip file for this repository
+> git clone https://github.com/nigussolomon/LIBRARY-MANAGEMENT.git
 
-* How to run the test suite
+### Step 2 - Installing Gems
+- Install the required Gems
+##### Go to the directory where you cloned or extracted the zip file
+> bundle install
 
-* Services (job queues, cache servers, search engines, etc.)
+### Step 3 - Setting up enviroment
+- Run the docker container
+> docker-compose up -d
+- Create the database inside the container
+> rails db:create
+- Migrate the models inside the database
+> rails db:migrate
 
-* Deployment instructions
+### Step 4 - Running the rails server
+- To get and send request we initiate the rails server
+> rails s
 
-* ...
+### For further exploring you can use postman to see the requests sent and recieved from the api...

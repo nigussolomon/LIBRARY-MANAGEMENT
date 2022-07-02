@@ -7,7 +7,7 @@ FactoryBot.define do
     published_date { Faker::Date.backward(days: 80) }
     category { Faker::Lorem.word }
     description { Faker::Lorem.paragraph }
-    amount_copy { 1 }
+    copy { 1 }
     isbn { Faker::Code.isbn }
     status { "Available" }
   end

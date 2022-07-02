@@ -27,3 +27,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+
+#Ignore the env file containing the password and email for pgadmin
+.env

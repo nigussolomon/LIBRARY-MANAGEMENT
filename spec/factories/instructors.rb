@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :instructor do
-    user { nil }
-    course { "MyString" }
+    association :user
+    course { Faker::Lorem.word }
   end
 end

@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :book_hold do
-    user { nil }
-    book { nil }
-    hold_date { "2022-06-30" }
+    association :user
+    association :book
+    hold_date { Faker::Date.forward(days: 3) }
   end
 end

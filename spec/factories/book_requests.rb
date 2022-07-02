@@ -1,11 +1,11 @@
 FactoryBot.define do
   factory :book_request do
-    user { nil }
-    author { "MyString" }
-    publisher { "MyString" }
-    published_date { "2022-06-30" }
-    category { "MyString" }
-    isbn { "MyString" }
-    status { "MyString" }
+    association :user
+    author { Faker::Name.name }
+    publisher { Faker::Name.name }
+    published_date { Faker::Date.backward(days: 80) }
+    category { Faker::Lorem.word }
+    isbn { Faker::Code.isbn }
+    status { "Pending" }
   end
 end

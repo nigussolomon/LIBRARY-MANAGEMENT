@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :book_loan do
-    user { nil }
-    book { nil }
-    due_date { "2022-06-30" }
-    loan_date { "2022-06-30" }
+    association :user
+    association :book
+    due_date { Faker::Date.forward(days: 0) }
+    loan_date { Faker::Date.forward(days: 15) }
   end
 end

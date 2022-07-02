@@ -4,5 +4,6 @@ FactoryBot.define do
     association :book
     due_date { Faker::Date.forward(days: 0) }
     loan_date { Faker::Date.forward(days: 15) }
+    status { "Return" }
   end
 end

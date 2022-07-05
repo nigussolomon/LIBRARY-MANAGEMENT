@@ -39,7 +39,7 @@ RSpec.describe "BookLoans", type: :request do
       book: nil,
       due_date: Faker::Date.forward(days: 0),
       loan_date: Faker::Date.forward(days: 15),
-      status: "Return",
+      status: nil,
     }
   end
 

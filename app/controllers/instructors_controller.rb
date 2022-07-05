@@ -49,7 +49,7 @@ class InstructorsController < ApplicationController
     end
 
     def instructor_params
-        params.require(:instructor).permit(:user, :course)
+        params.require(:instructor).permit(:user_id, :course)
     end
 
 end

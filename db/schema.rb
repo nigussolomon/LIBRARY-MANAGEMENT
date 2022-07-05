@@ -10,21 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_01_091908) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_01_090617) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "book_holds", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "book_id", null: false
-    t.date "hold_date", null: false
-    t.date "request_date", null: false
-    t.string "status", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_book_holds_on_book_id"
-    t.index ["user_id"], name: "index_book_holds_on_user_id"
-  end
 
   create_table "book_loans", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -67,12 +55,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_01_091908) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "categories", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "instructors", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "course", null: false
@@ -100,8 +82,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_01_091908) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "book_holds", "books"
-  add_foreign_key "book_holds", "users"
   add_foreign_key "book_loans", "books"
   add_foreign_key "book_loans", "users"
   add_foreign_key "book_requests", "users"

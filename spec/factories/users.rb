@@ -4,6 +4,6 @@ FactoryBot.define do
     password_digest { Faker::Lorem.word }
     first_name { Faker::Name.name }
     last_name { Faker::Name.name }
-    user_id { "UGR/SWE/0001/21" }
+    user_id { Faker::Code.npi }
   end
 end

@@ -1,8 +1,10 @@
 class StudentsController < ApplicationController
-     before_action :set_student, only: %i[show edit update  destroy]
+    before_action :set_student, only: %i[show edit update  destroy]
 
     def index
-         @Student = Students.all
+        @students = Student.all
+        data = ActiveModelSerializers::SerializableResource.new(@students)
+        render json: {success: true, data: data}
     end
 
     def new
@@ -10,6 +12,7 @@ class StudentsController < ApplicationController
     end
 
     def show 
+        render json: @student
     end
 
     def edit
@@ -18,44 +21,33 @@ class StudentsController < ApplicationController
     def create
         @student= Student.new(student_params)
 
-        respond_to do |format|
-            if @Student.save
-                format.html { redirect_to student_url(@student), notice: "Student was successfully created." }
-                format.json { render :show, status: :created, location: @student }
-            else
-                format.html { render :new, status: :unprocessable_entity }
-                format.json { render json: @student.errors, status: :unprocessable_entity }
-            end
+        if @student.save
+            render json: @student, status: :created, location: @student
+        else
+            render json: @student.errors, status: :unprocessable_entity
         end
+    end
 
 
-        def update
-            respond_to do |format|
-                if @student.update(student_params)
-                    format.html {redirect_to student_url(@student), notice: "Student was succesfully updated"}
-                    format.json {render :show, status: :created, location: @student}
-                else
-                    format.html {render :new, status: :unprocessable_entity}
-                    format.json {render json: @student.errors, status: :unprocessable_entity }
-                end
-            end
+    def update
+        if @student.update(student_params)
+            render json: @student
+        else
+            render json: @student.errors, status: :unprocessable_entity
         end
+    end
     
-        def destroy
-            @student.destroy
-            respond_to do |format|
-                format.html { redirect_to student_url, notice: "Student was succesfully deleted" }
-                format.json {head :no_content}
-            end
-        end
+    def destroy
+        @student.destroy
+    end
     
-        private
+    private
         
-        def set_student
-            @student = Student.find(params[:id])
-        end
+    def set_student
+        @student = Student.find(params[:id])
+    end
     
-        def student_params
-            params.require(:student).permit(:year, :user, :semester)
-        end
+    def student_params
+        params.require(:student).permit(:year, :user, :semester)
+    end
 end

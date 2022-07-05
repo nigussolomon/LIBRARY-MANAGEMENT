@@ -4,9 +4,12 @@ class BooksController < ApplicationController
 
     def index
         @books = Book.all
+        data = ActiveModelSerializers::SerializableResource.new(@books)
+        render json: { success: true, data: data }
     end 
 
     def show
+        render json: @book
     end
 
     def new
@@ -18,35 +21,23 @@ class BooksController < ApplicationController
     def create
         @book = Book.new(book_params)
 
-        respond_to do |format|
-            if @book.save
-                format.html { redirect_to book_url(@book), notice: "Book was successfully created." }
-                format.json { render :show, status: :created, location: @book }
-            else
-                format.html { render :new, status: :unprocessable_entity }
-                format.json { render json: @book.errors, status: :unprocessable_entity }
-            end
+        if @book.save
+            render json: @book, status: :created, location: @book
+        else
+            render json: @book.errors, status: :unprocessable_entity
         end
     end
 
     def update
-        respond_to do |format|
-            if @book.update(book_params)
-                format.html { redirect_to book_url(@book), notice: "Book was successfully updated." }
-                format.json { render :show, status: :ok, location: @book }
-            else
-                format.html { render :edit, status: :unprocessable_entity }
-                format.json { render json: @book.errors, status: :unprocessable_entity }
-            end
+        if @book.update(book_params)
+            render json: @book
+        else
+            render json: @book.errors, status: :unprocessable_entity
         end
     end
 
     def destroy
         @book.destroy
-        respond_to do |format|
-            format.html { redirect_to books_url, notice: "book was successfully destroyed." }
-            format.json { head :no_content }
-        end
     end
 
     private
@@ -60,4 +51,3 @@ class BooksController < ApplicationController
     end
 
 end
- 

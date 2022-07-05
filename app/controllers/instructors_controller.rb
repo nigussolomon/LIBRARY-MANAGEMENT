@@ -1,5 +1,5 @@
 class InstructorsController < ApplicationController
-    before_action :set_Instrutor, only: %i[ show edit update destroy ]
+    before_action :set_instrutor, only: %i[ show edit update destroy ]
 
 
     def index
@@ -10,7 +10,7 @@ class InstructorsController < ApplicationController
     end
 
     def new
-        @Instructor = Instructor.new
+        @instructor = Instructor.new
     end
 
     def edit
